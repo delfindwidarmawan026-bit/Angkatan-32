@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Pondok Pesantren Al-Kahfi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Intro Screen -->
+    <div id="introScreen" class="intro-screen">
+        <div class="intro-content">
+            <div class="intro-logo">
+                <div class="logo-container">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+            </div>
+            <div class="intro-text">
+                <h1 class="intro-title">Al-Kahfi Islamic Boarding School</h1>
+                <p class="intro-subtitle">Album Kenangan Angkatan ke-32</p>
+                <div class="intro-tagline">
+                    <span>"Bersama Membangun Mimpi, Bersama Meraih Prestasi"</span>
+                </div>
+            </div>
+            <div class="intro-loader">
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                </div>
+                <p class="loader-text">Memuat Kenangan Indah...</p>
+            </div>
+        </div>
+        <div class="intro-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Al-Kahfi Islamic Boarding School
+                </h1>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Beranda</a></li>
+                    <li><a href="#gallery" class="nav-link">Galeri</a></li>
+                    <li><a href="#upload" class="nav-link">Upload</a></li>
+                    <li><a href="#about" class="nav-link">Tentang</a></li>
+                    <li><a href="https://www.instagram.com/genexeta.32_?igsh=MWJuaWI0Z2E1eGlwZQ==" target="_blank" class="nav-link instagram-link">
+                        <i class="fab fa-instagram"></i>
+                        <span class="instagram-text">@genexeta.32_</span>
+                    </a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Kenangan Indah Di Ma'had Al-Kahfi</h2>
+                <p>Album foto kegiatan santri angkatan ke-32</p>
+                <button class="cta-button" onclick="scrollToGallery()">
+                    <i class="fas fa-images"></i>
+                    Lihat Galeri
+                </button>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">Galeri Foto</h2>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="kegiatan">Kegiatan</button>
+                    <button class="filter-btn" data-filter="peter">PETER</button>
+                    <button class="filter-btn" data-filter="acara">Acara</button>
+                    <button class="filter-btn" data-filter="studytour">Study Tour M Beach</button>
+                    <button class="filter-btn" data-filter="mbeachrandom">M Beach Random</button>
+                    <button class="filter-btn" data-filter="reorganisasipeter">Reorganisasi Peter</button>
+                </div>
+
+                <!-- Photo Grid -->
+                <div class="photo-grid" id="photoGrid">
+                    <!-- Photos will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="upload" class="upload-section">
+            <div class="container">
+                <h2 class="section-title">Upload Foto</h2>
+                <div class="upload-container">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop foto di sini atau klik untuk memilih</p>
+                        <input type="file" id="fileInput" multiple accept="image/*" hidden>
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            Pilih Foto
+                        </button>
+                    </div>
+                    
+                    <div class="upload-form">
+                        <input type="text" id="photoTitle" placeholder="Judul foto (untuk single upload)">
+                        <select id="photoCategory">
+                            <option value="kegiatan">Kegiatan</option>
+                            <option value="peter">PETER</option>
+                            <option value="acara">Acara</option>
+                            <option value="studytour">Study Tour M Beach</option>
+                            <option value="mbeachrandom">M Beach Random</option>
+                            <option value="reorganisasipeter">Reorganisasi Peter</option>
+                        </select>
+                        <textarea id="photoDescription" placeholder="Deskripsi foto (opsional)"></textarea>
+                        
+                        <!-- Bulk Upload Options -->
+                        <div class="bulk-upload-options">
+                            <label class="bulk-checkbox">
+                                <input type="checkbox" id="bulkUpload">
+                                <span>Upload banyak foto sekaligus (bulk upload)</span>
+                            </label>
+                            <div id="bulkSettings" class="bulk-settings" style="display: none;">
+                                <input type="text" id="bulkPrefix" placeholder="Prefix judul (misal: M Beach Random)">
+                                <small>Foto akan diberi nama: [Prefix] - Foto 1, [Prefix] - Foto 2, dst.</small>
+                            </div>
+                        </div>
+                        
+                        <button class="submit-btn" onclick="uploadPhoto()">
+                            <i class="fas fa-upload"></i>
+                            <span id="uploadBtnText">Upload</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Tentang Angkatan Kami</h2>
+                <div class="about-content">
+                    <div class="quote-section">
+                        <blockquote class="main-quote">
+                            "Bersama kita membangun mimpi, bersama kita meraih prestasi, 
+                            dan bersama kita akan selalu menjadi keluarga besar Al-Kahfi"
+                        </blockquote>
+                        <cite>- Angkatan Al-Kahfi ke-32 -</cite>
+                    </div>
+                    
+                    <div class="story-content">
+                        <p>Kami adalah generasi yang tumbuh dengan semangat persaudaraan dan cinta ilmu. 
+                        Di Pondok Pesantren Al-Kahfi, kami tidak hanya belajar mengaji dan mendalami ilmu agama, 
+                        tetapi juga belajar arti kebersamaan, perjuangan, dan keikhlasan.</p>
+                        
+                        <p>Setiap momen yang terekam dalam album ini adalah saksi bisu perjalanan spiritual kami. 
+                        Dari sholat subuh berjamaah hingga diskusi malam, dari kegiatan PETER hingga 
+                        keceriaan di M Beach - semua adalah bagian dari kisah indah angkatan kami.</p>
+                    </div>
+                    
+                    <div class="quotes-grid">
+                        <div class="quote-card">
+                            <p>"Al-Kahfi bukan hanya tempat menuntut ilmu, tapi rumah kedua yang mengajarkan kita arti keluarga"</p>
+                            <span>- Santri Angkatan ke-32 -</span>
+                        </div>
+                        <div class="quote-card">
+                            <p>"Setiap ilmu yang kita pelajari, setiap doa yang kita panjatkan, adalah investasi untuk masa depan yang lebih baik"</p>
+                            <span>- Santri Angkatan ke-32 -</span>
+                        </div>
+                        <div class="quote-card">
+                            <p>"Persahabatan di pesantren adalah ikatan yang tak akan pernah putus, bahkan setelah kita berpisah"</p>
+                            <span>- Santri Angkatan ke-32 -</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <i class="fas fa-images"></i>
+                            <span class="stat-number" id="totalPhotos">0</span>
+                            <span class="stat-label">Kenangan Terabadikan</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Santri Bersaudara</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-heart"></i>
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Ikatan Persaudaraan</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-calendar"></i>
+                            <span class="stat-number">32</span>
+                            <span class="stat-label">Angkatan Bersejarah</span>
+                        </div>
+                    </div>
+                    
+                    <div class="closing-message">
+                        <p><em>"Album ini adalah persembahan untuk semua santri Al-Kahfi angkatan ke-32. 
+                        Semoga setiap foto yang tersimpan di sini menjadi pengingat indah akan masa-masa 
+                        terbaik kita bersama. Barakallahu fiikum, saudara-saudaraku!"</em></p>
+                    </div>
+                    
+                    <div class="instagram-section">
+                        <h3><i class="fab fa-instagram"></i> Ikuti Kami di Instagram</h3>
+                        <p>Dapatkan update terbaru dan foto-foto eksklusif dari angkatan ke-32</p>
+                        <a href="https://www.instagram.com/genexeta.32_?igsh=MWJuaWI0Z2E1eGlwZQ==" target="_blank" class="instagram-follow-btn">
+                            <i class="fab fa-instagram"></i>
+                            <span>
+                                <strong>@genexeta.32_</strong>
+                                <small>Follow Instagram Kami</small>
+                            </span>
+                        </a>
+                        <div class="instagram-stats">
+                            <div class="stat-badge">
+                                <i class="fas fa-users"></i>
+                                <span>Angkatan ke-32</span>
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-camera"></i>
+                                <span>Foto Eksklusif</span>
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-heart"></i>
+                                <span>Kenangan Bersama</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-actions">
+                <button class="delete-photo-btn" onclick="deleteCurrentPhoto()">
+                    <i class="fas fa-trash-alt"></i>
+                    Hapus Foto
+                </button>
+            </div>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+                <span id="modalCategory" class="category-tag"></span>
+                <div class="photo-meta">
+                    <small id="photoDate"></small>
+                    <small id="photoId" style="display: none;"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <p>&copy; 1 Januari 2026 Album Pondok Pesantren Al-Kahfi. Dibuat oleh <strong>Delfin Dwi Darmawan</strong> untuk kenangan indah para santri.</p>
+                </div>
+                <div class="footer-social">
+                    <p>Ikuti kami di:</p>
+                    <a href="https://www.instagram.com/genexeta.32_?igsh=MWJuaWI0Z2E1eGlwZQ==" target="_blank" class="footer-instagram">
+                        <i class="fab fa-instagram"></i>
+                        @genexeta.32_
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
